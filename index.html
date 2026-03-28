@@ -131,7 +131,7 @@ function updateTimer() {
   const seconds = Math.floor((diff / 1000) % 60);
 
   timerEl.innerHTML =
-    days + "z " + hours + "h " + minutes + "m " + seconds + "s";
+    hours + "h " + minutes + "m " + seconds + "s";
 }
 
 const interval = setInterval(updateTimer, 1000);
