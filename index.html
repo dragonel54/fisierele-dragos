@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Dragos Files</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  background: #f5f5f5;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 28px;
+}
+
+.folder {
+  margin: 8px 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+#timer {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+button {
+  display: none;
+  margin-top: 20px;
+  padding: 15px 40px;
+  font-size: 18px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: darkred;
+}
+
+#secretVideo {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Cuprins</h2>
+  <div class="folder">📁 Matei Bolog</div>
+  <div class="folder">📁 Olariu Stefan</div>
+  <div class="folder">📁 Daniel</div>
+  <div class="folder">📁 Horia</div>
+  <div class="folder">📁 Alin</div>
+  <div class="folder">📁 Calin Darius</div>
+  <div class="folder">📁 Eduard</div>
+  <div class="folder">📁 Cozma Stefan</div>
+  <div class="folder">📁 Raluca</div>
+  <div class="folder">📁 Dragos</div>
+</div>
+
+<div class="main">
+  <h1>Afla adevarul despre Fisierele Dragos</h1>
+
+  <div id="timer"></div>
+
+  <button id="revealBtn" onclick="reveal()">REVEAL</button>
+
+  <video id="secretVideo" src="video.mp4"></video>
+
+  <audio id="audio" src="melodie.mp3"></audio>
+</div>
+
+<div class="footer">
+  Copyright © Dragos Files 2025-2026
+</div>
+
+<script>
+// DATA EXACTĂ (România = UTC+2 / +3 cu DST)
+const targetDate = new Date();
+targetDate.setSeconds(targetDate.getSeconds() + 3);
+
+const timerEl = document.getElementById("timer");
+const button = document.getElementById("revealBtn");
+
+function updateTimer() {
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    timerEl.style.display = "none";
+    button.style.display = "block";
+    clearInterval(interval);
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  timerEl.innerHTML =
+    days + "z " + hours + "h " + minutes + "m " + seconds + "s";
+}
+
+const interval = setInterval(updateTimer, 1000);
+updateTimer();
+
+function reveal() {
+  const video = document.getElementById("secretVideo");
+  video.style.display = "block";
+  video.play();
+}
+</script>
+
+</body>
+</html>
